@@ -1,0 +1,45 @@
+﻿@model mfdev_backend_2023.Models.Veiculo
+
+@{
+    ViewData["Title"] = "Confirmar Exclusão";
+}
+
+<h1>Confirmar Exclusão</h1>
+
+<h3>Você tem certeza que deseja excluir este veículo?</h3>
+<div>
+    <h4>Veículo</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Placa)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Placa)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AnoFabricacao)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AnoFabricacao)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AnoModelo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AnoModelo)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Excluir" class="btn btn-danger" /> |
+        <a asp-action="Index" class="btn btn-secondary">Voltar para a Lista</a>
+    </form>
+</div>
