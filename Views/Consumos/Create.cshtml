@@ -4,44 +4,48 @@
     ViewData["Title"] = "Criar Consumo";
 }
 
-<h1>Criar Consumo</h1>
+<div class="container mt-4">
+    <!-- Adiciona um espaço no topo -->
+    <h1 class="text-center">Criar Consumo</h1> <!-- Centralizando o título -->
+    <h4 class="text-center">Consumo</h4> <!-- Centralizando o subtítulo -->
+    <hr />
 
-<h4>Consumo</h4>
-<hr />
-
-<form asp-action="Create">
-    <div class="form-group">
-        <label asp-for="Descricao" class="control-label"></label>
-        <input asp-for="Descricao" class="form-control" />
-        <span asp-validation-for="Descricao" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Data" class="control-label"></label>
-        <input asp-for="Data" class="form-control" type="date" />
-        <span asp-validation-for="Data" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Km" class="control-label"></label>
-        <input asp-for="Km" class="form-control" />
-        <span asp-validation-for="Km" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Valor" class="control-label"></label>
-        <input asp-for="Valor" class="form-control" />
-        <span asp-validation-for="Valor" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Tipo" class="control-label"></label>
-        <select asp-for="Tipo" class="form-control" asp-items="Html.GetEnumSelectList<TipoCombustivel>()"></select>
-        <span asp-validation-for="Tipo" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="VeiculoId" class="control-label"></label>
-        <select asp-for="VeiculoId" class="form-control" asp-items="ViewBag.VeiculoId"></select>
-        <span asp-validation-for="VeiculoId" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <input type="submit" value="Criar" class="btn btn-primary" />
-        <a asp-action="Index" class="btn btn-secondary">Voltar</a>
-    </div>
-</form>
+    <form asp-action="Create" class="form-horizontal">
+        <!-- Usando a classe horizontal para melhor alinhamento -->
+        <div class="form-group">
+            <label asp-for="Descricao" class="control-label"></label>
+            <input asp-for="Descricao" class="form-control" />
+            <span asp-validation-for="Descricao" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Data" class="control-label"></label>
+            <input asp-for="Data" class="form-control" type="date" />
+            <span asp-validation-for="Data" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Km" class="control-label"></label>
+            <input asp-for="Km" class="form-control" />
+            <span asp-validation-for="Km" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Valor" class="control-label"></label>
+            <input asp-for="Valor" class="form-control" />
+            <span asp-validation-for="Valor" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Tipo" class="control-label"></label>
+            <select asp-for="Tipo" class="form-control" asp-items="Html.GetEnumSelectList<TipoCombustivel>()"></select>
+            <span asp-validation-for="Tipo" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="VeiculoId" class="control-label"></label>
+            <select asp-for="VeiculoId" class="form-control" asp-items="ViewBag.VeiculoId"></select>
+            <span asp-validation-for="VeiculoId" class="text-danger"></span>
+        </div>
+        <div class="form-group text-center">
+            <!-- Centralizando os botões -->
+            <input type="submit" value="Criar" class="btn btn-primary" />
+            <a asp-action="Index" class="btn btn-secondary">Voltar</a>
+        </div>
+    </form>
+</div>

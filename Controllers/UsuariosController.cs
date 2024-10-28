@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace mfdev_backend_2023.Controllers
 {
+    [Authorize(Roles ="Admin")]
     public class UsuariosController : Controller
     {
         private readonly AppDbContext _context;
@@ -24,16 +25,25 @@ namespace mfdev_backend_2023.Controllers
             return View(usuarios);
         }
 
+        [AllowAnonymous]
+        public IActionResult AccessDenied()
+        {
+            return View("AccessDenied");
+        }
+
+
+        [AllowAnonymous]
         public IActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> Login(Usuario usuario)
         {
             var dados = await _context.Usuarios
-                .FindAsync(usuario.Id);
+            .FirstOrDefaultAsync(u => u.Nome == usuario.Nome);
 
             if (dados == null)
             {
@@ -65,7 +75,7 @@ namespace mfdev_backend_2023.Controllers
 
                 await HttpContext.SignInAsync(principal, props);
 
-                return Redirect("/");
+                return Redirect("/Veiculos");
 
             }
 
@@ -73,16 +83,11 @@ namespace mfdev_backend_2023.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync();
             return RedirectToAction("Login", "Usuarios");
-        }
-
-        [AllowAnonymous]
-        public IActionResult AccessDenied()
-        {
-            return View();
         }
 
         // GET: Usuarios/Details/5
@@ -99,6 +104,7 @@ namespace mfdev_backend_2023.Controllers
         }
 
         // GET: Usuarios/Create
+        [AllowAnonymous]
         public IActionResult Create()
         {
             return View();
@@ -106,17 +112,23 @@ namespace mfdev_backend_2023.Controllers
 
         // POST: Usuarios/Create
         [HttpPost]
-        // Método Create do seu controller
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public async Task<IActionResult> Create([Bind("Id,Nome,Senha,Perfil")] Usuario usuario)
         {
             if (ModelState.IsValid)
             {
-                // Hasheia a senha antes de salvar no banco de dados
-                usuario.Senha = BCrypt.Net.BCrypt.HashPassword(usuario.Senha);
-                _context.Add(usuario);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Login", "Usuarios");
+                try
+                {
+                    usuario.Senha = BCrypt.Net.BCrypt.HashPassword(usuario.Senha);
+                    _context.Add(usuario);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction("Login", "Usuarios");
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Message = "Erro ao salvar o usuário: " + ex.Message;
+                }
             }
             return View(usuario);
         }

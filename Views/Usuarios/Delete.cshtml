@@ -4,22 +4,29 @@
     ViewData["Title"] = "Excluir Usuário";
 }
 
-<h1>Excluir Usuário</h1>
+<div class="container mt-4">
+    <h1 class="text-center">Excluir Usuário</h1>
 
-<h4>Usuário</h4>
-<hr />
-<div>
-    <h4>Tem certeza que deseja excluir este usuário?</h4>
-    <dl class="row">
-        <dt class="col-sm-2">Nome</dt>
-        <dd class="col-sm-10">@Model.Nome</dd>
+    <div class="card">
+        <div class="card-body">
+            <h4>Usuário</h4>
+            <hr />
+            <h4 class="text-danger">Tem certeza que deseja excluir este usuário?</h4>
+            <dl class="row">
+                <dt class="col-sm-2">Nome:</dt>
+                <dd class="col-sm-10">@Model.Nome</dd>
 
-        <dt class="col-sm-2">Perfil</dt>
-        <dd class="col-sm-10">@Model.Perfil</dd>
-    </dl>
+                <dt class="col-sm-2">Perfil:</dt>
+                <dd class="col-sm-10">@Model.Perfil</dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="text-center mt-3">
+        <form asp-action="Delete" method="post" class="d-inline">
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="btn btn-danger">Excluir</button>
+        </form>
+        <a asp-action="Index" class="btn btn-secondary">Voltar para a Lista</a>
+    </div>
 </div>
-<form asp-action="Delete" method="post">
-    <input type="hidden" asp-for="Id" />
-    <input type="submit" value="Excluir" class="btn btn-danger" /> |
-    <a asp-action="Index" class="btn btn-secondary">Voltar para a Lista</a>
-</form>

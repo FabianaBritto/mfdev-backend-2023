@@ -4,10 +4,30 @@
     ViewData["Title"] = "Create";
 }
 
-<h1 class="" text-center"">Adicionar usuário</h1>
+<style>
+    body {
+        background-color: #f8f9fa; /* Fundo claro para um visual limpo */
+    }
+
+    h1 {
+        color: #343a40; /* Texto escuro para o título */
+        margin-bottom: 20px; /* Espaçamento abaixo do título */
+    }
+
+    .form-control {
+        margin-bottom: 15px; /* Espaçamento entre os campos do formulário */
+    }
+
+    .btn {
+        width: 48%; /* Botões com largura igual para melhor visual */
+    }
+</style>
+
+<h1 class="text-center">Adicionar Usuário</h1>
 
 <div class="text-center">
-    <div class="col-md-4">
+    <div class="col-md-4 mx-auto">
+        <!-- Centraliza a coluna -->
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -17,7 +37,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Senha" class="control-label"></label>
-                <input asp-for="Senha" class="form-control" />
+                <input asp-for="Senha" class="form-control" type="password" /> <!-- Campo de senha em modo oculto -->
                 <span asp-validation-for="Senha" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -25,7 +45,6 @@
                 <select asp-for="Perfil" class="form-control" asp-items="Html.GetEnumSelectList<Perfil>()"></select>
                 <span asp-validation-for="Perfil" class="text-danger"></span>
             </div>
-            <br />
             <div class="form-group">
                 <input type="submit" value="Adicionar" class="btn btn-success" />
                 <a asp-action="Login" class="btn btn-secondary">Voltar</a>

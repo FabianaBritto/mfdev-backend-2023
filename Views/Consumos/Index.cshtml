@@ -4,35 +4,38 @@
     ViewData["Title"] = "Lista de Consumos";
 }
 
-<h1>Lista de Consumos</h1>
+<h1 class="text-center">Lista de Consumos</h1> <!-- Centralizando o título -->
 
-<p>
+<p class="text-center">
+    <!-- Centralizando o botão -->
     <a asp-action="Create" class="btn btn-success">Adicionar novo consumo</a>
 </p>
 
-<table class="table">
+<table class="table table-secondary">
+    <!-- Adicionando a classe table-secondary para fundo cinza -->
     <thead>
         <tr>
-            <th>@Html.DisplayNameFor(model => model.First().Descricao)</th>
-            <th>@Html.DisplayNameFor(model => model.First().Data)</th>
-            <th>@Html.DisplayNameFor(model => model.First().Valor)</th>
-            <th>@Html.DisplayNameFor(model => model.First().Km)</th>
-            <th>@Html.DisplayNameFor(model => model.First().Tipo)</th>
-            <th>@Html.DisplayNameFor(model => model.First().Veiculo.Nome)</th>
-            <th></th>
+            <th class="text-center">@Html.DisplayNameFor(model => model.First().Descricao)</th>
+            <th class="text-center">@Html.DisplayNameFor(model => model.First().Data)</th>
+            <th class="text-center">@Html.DisplayNameFor(model => model.First().Valor)</th>
+            <th class="text-center">@Html.DisplayNameFor(model => model.First().Km)</th>
+            <th class="text-center">@Html.DisplayNameFor(model => model.First().Tipo)</th>
+            <th class="text-center">@Html.DisplayNameFor(model => model.First().Veiculo.Nome)</th>
+            <th class="text-center"></th> <!-- Centralizando a coluna vazia -->
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
             <tr>
-                <td>@Html.DisplayFor(modelItem => item.Descricao)</td>
-                <td>@Html.DisplayFor(modelItem => item.Data)</td>
-                <td>@Html.DisplayFor(modelItem => item.Valor)</td>
-                <td>@Html.DisplayFor(modelItem => item.Km)</td>
-                <td>@Html.DisplayFor(modelItem => item.Tipo)</td>
-                <td>@Html.DisplayFor(modelItem => item.Veiculo.Nome)</td>
-                <td>
+                <td class="text-center">@Html.DisplayFor(modelItem => item.Descricao)</td>
+                <td class="text-center">@Html.DisplayFor(modelItem => item.Data)</td>
+                <td class="text-center">@Html.DisplayFor(modelItem => item.Valor)</td>
+                <td class="text-center">@Html.DisplayFor(modelItem => item.Km)</td>
+                <td class="text-center">@Html.DisplayFor(modelItem => item.Tipo)</td>
+                <td class="text-center">@Html.DisplayFor(modelItem => item.Veiculo.Nome)</td>
+                <td class="text-center">
+                    <!-- Centralizando as ações -->
                     <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
                     <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">Visualizar</a> |
                     <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Apagar</a>

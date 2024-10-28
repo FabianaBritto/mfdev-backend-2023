@@ -15,7 +15,8 @@ namespace mfdev_backend_2023.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            // Redireciona para a página de login
+            return RedirectToAction("Login", "Usuarios");
         }
 
         public IActionResult Privacy()

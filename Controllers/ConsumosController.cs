@@ -1,4 +1,5 @@
 ﻿using mfdev_backend_2023.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace mfdev_backend_2023.Controllers
 {
+    [Authorize]
     public class ConsumosController : Controller
     {
         private readonly AppDbContext _context;

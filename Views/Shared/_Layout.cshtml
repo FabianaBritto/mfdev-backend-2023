@@ -7,41 +7,69 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/mfdev_backend_2023.styles.css" asp-append-version="true" />
+    <style>
+        body {
+            background-color: #f8f9fa; /* Fundo claro para um visual limpo */
+        }
+
+        .navbar {
+            border-bottom: 2px solid #007bff; /* Borda azul para destaque */
+        }
+
+        .footer {
+            background-color: #f1f1f1; /* Fundo mais escuro para o rodapé */
+            padding: 20px 0; /* Espaçamento no rodapé */
+        }
+
+            .footer a {
+                color: #007bff; /* Links do rodapé com cor azul */
+            }
+
+                .footer a:hover {
+                    text-decoration: underline; /* Sublinhar ao passar o mouse */
+                }
+    </style>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-light bg-white">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">mfdev_backend_2023</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        @if (User.Identity.IsAuthenticated)
+                        {
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Veiculos" asp-action="Index">Veículos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Consumos" asp-action="Index">Consumos</a>
                         </li>
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Usuarios" asp-action="Index">Usuarios</a>
+                        </li>
+                        }
+                        }
                     </ul>
-                    <ul class=" navbar-nav me-4">
+                    <ul class="navbar-nav">
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                Olá, @User.Identity.Name<a class="nav-link text-dark" asp-area="" asp-controller="Usuarios"
-                                                           asp-action="Logout">Sair</a>
+                                <span class="navbar-text">Olá, @User.Identity.Name</span>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Usuarios" asp-action="Logout">Sair</a>
                             </li>
                         }
                         else
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Usuarios"
-                                   asp-action="Login">Login</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Usuarios" asp-action="Login">Login</a>
                             </li>
                         }
                     </ul>
@@ -56,7 +84,7 @@
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
+        <div class="container text-center">
             &copy; 2024 - mfdev_backend_2023 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
@@ -66,3 +94,4 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+

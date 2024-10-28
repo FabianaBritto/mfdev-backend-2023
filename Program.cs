@@ -19,7 +19,7 @@ builder.Services.Configure<CookiePolicyOptions>(options =>
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
-        options.AccessDeniedPath = "/Usuario/AccessDenied";
+        options.AccessDeniedPath = "/Usuarios/AccessDenied";
         options.LoginPath = "/Usuarios/Login";
     });
 

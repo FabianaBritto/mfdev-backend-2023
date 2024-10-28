@@ -4,52 +4,56 @@
     ViewData["Title"] = "Excluir Consumo";
 }
 
-<h1>Excluir Consumo</h1>
+<div class="container mt-4">
+    <!-- Adiciona um espaço no topo -->
+    <h1 class="text-center">Excluir Consumo</h1> <!-- Centralizando o título -->
+    <h4 class="text-center">Consumo</h4> <!-- Centralizando o subtítulo -->
+    <hr />
+    <p class="text-center">Tem certeza que deseja excluir este item?</p> <!-- Centralizando a mensagem -->
 
-<h4>Consumo</h4>
-<hr />
-<p>Tem certeza que deseja excluir este item?</p>
-<dl class="row">
-    <dt class="col-sm-2">
-        @Html.DisplayNameFor(model => model.Descricao)
-    </dt>
-    <dd class="col-sm-10">
-        @Html.DisplayFor(model => model.Descricao)
-    </dd>
-    <dt class="col-sm-2">
-        @Html.DisplayNameFor(model => model.Data)
-    </dt>
-    <dd class="col-sm-10">
-        @Model.Data.ToShortDateString()
-    </dd>
-    <dt class="col-sm-2">
-        @Html.DisplayNameFor(model => model.Km)
-    </dt>
-    <dd class="col-sm-10">
-        @Html.DisplayFor(model => model.Km)
-    </dd>
-    <dt class="col-sm-2">
-        @Html.DisplayNameFor(model => model.Valor)
-    </dt>
-    <dd class="col-sm-10">
-        @Html.DisplayFor(model => model.Valor)
-    </dd>
-    <dt class="col-sm-2">
-        @Html.DisplayNameFor(model => model.Tipo)
-    </dt>
-    <dd class="col-sm-10">
-        @Html.DisplayFor(model => model.Tipo)
-    </dd>
-    <dt class="col-sm-2">
-        @Html.DisplayNameFor(model => model.Veiculo)
-    </dt>
-    <dd class="col-sm-10">
-        @Html.DisplayFor(model => model.Veiculo.Nome) 
-    </dd>
-</dl>
+    <dl class="row">
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Data)
+        </dt>
+        <dd class="col-sm-9">
+            @Model.Data.ToShortDateString()
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Km)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Km)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Valor)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Valor)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Tipo)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Tipo)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Veiculo)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Veiculo.Nome)
+        </dd>
+    </dl>
 
-<form asp-action="Delete" method="post">
-    <input type="hidden" asp-for="Id" />
-    <input type="submit" value="Excluir" class="btn btn-danger" /> |
-    <a asp-action="Index" class="btn btn-secondary">Voltar para a Lista</a>
-</form>
+    <form asp-action="Delete" method="post" class="text-center">
+        <!-- Centralizando o formulário -->
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Excluir" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-secondary">Voltar para a Lista</a>
+    </form>
+</div>

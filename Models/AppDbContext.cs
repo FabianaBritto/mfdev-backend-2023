@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using mfdev_backend_2023.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace mfdev_backend_2023.Models
 {
