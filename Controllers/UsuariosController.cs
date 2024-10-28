@@ -30,36 +30,36 @@ namespace mfdev_backend_2023.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login([Bind("Id,Senha")] Usuario usuario)
+        public async Task<IActionResult> Login(Usuario usuario)
         {
-            var user = await _context.Usuarios
-                .FirstOrDefaultAsync(m => m.Id == usuario.Id);
+            var dados = await _context.Usuarios
+                .FindAsync(usuario.Id);
 
-            if (user == null)
+            if (dados == null)
             {
                 ViewBag.Message = "Usuário e/ou Senha inválidos!";
                 return View();
             }
 
-            bool isSenhaOk = BCrypt.Net.BCrypt.Verify(usuario.Senha, user.Senha);
+            bool senhaOk = BCrypt.Net.BCrypt.Verify(usuario.Senha, dados.Senha);
 
-            if (isSenhaOk)
+            if (senhaOk)
             {
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, user.Nome),
-                    new Claim(ClaimTypes.NameIdentifier, user.Nome),
-                    new Claim(ClaimTypes.Role, user.Perfil.ToString())
+                    new Claim(ClaimTypes.Name, dados.Nome),
+                    new Claim(ClaimTypes.NameIdentifier, dados.Nome),
+                    new Claim(ClaimTypes.Role, dados.Perfil.ToString())
                 };
 
-                var userIdentity = new ClaimsIdentity(claims, "login");
+                var usuarioIdentity = new ClaimsIdentity(claims, "login");
 
-                ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
+                ClaimsPrincipal principal = new ClaimsPrincipal(usuarioIdentity);
 
                 var props = new AuthenticationProperties
                 {
                     AllowRefresh = true,
-                    ExpiresUtc = DateTime.Now.ToLocalTime().AddDays(7),
+                    ExpiresUtc = DateTime.UtcNow.ToLocalTime().AddDays(8),
                     IsPersistent = true
                 };
 
@@ -106,18 +106,21 @@ namespace mfdev_backend_2023.Controllers
 
         // POST: Usuarios/Create
         [HttpPost]
+        // Método Create do seu controller
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Usuario usuario)
+        public async Task<IActionResult> Create([Bind("Id,Nome,Senha,Perfil")] Usuario usuario)
         {
             if (ModelState.IsValid)
             {
+                // Hasheia a senha antes de salvar no banco de dados
                 usuario.Senha = BCrypt.Net.BCrypt.HashPassword(usuario.Senha);
                 _context.Add(usuario);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Login", "Usuarios");
             }
             return View(usuario);
         }
+
 
         // GET: Usuarios/Edit/5
         public async Task<IActionResult> Edit(int? id)
