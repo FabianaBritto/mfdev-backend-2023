@@ -8,6 +8,31 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\NovaPasta1\NovaPasta\**" />
+    <Content Remove="Views\NovaPasta1\NovaPasta\**" />
+    <EmbeddedResource Remove="Views\NovaPasta1\NovaPasta\**" />
+    <None Remove="Views\NovaPasta1\NovaPasta\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Views\Consumos.cs" />
+    <Compile Remove="Views\NovaPasta1\Create.cs" />
+    <Compile Remove="Views\NovaPasta1\Delete.cs" />
+    <Compile Remove="Views\NovaPasta1\Details.cs" />
+    <Compile Remove="Views\NovaPasta1\Edit.cs" />
+    <Compile Remove="Views\NovaPasta1\Index.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Views\NovaPasta1\_Layout.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Views\NovaPasta1\_Layout.cshtml.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.19" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.19" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.19" />

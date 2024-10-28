@@ -1,0 +1,55 @@
+﻿@model mfdev_backend_2023.Models.Consumo
+
+@{
+    ViewData["Title"] = "Excluir Consumo";
+}
+
+<h1>Excluir Consumo</h1>
+
+<h4>Consumo</h4>
+<hr />
+<p>Tem certeza que deseja excluir este item?</p>
+<dl class="row">
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Descricao)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Descricao)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Data)
+    </dt>
+    <dd class="col-sm-10">
+        @Model.Data.ToShortDateString()
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Km)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Km)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Valor)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Valor)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Tipo)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Tipo)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Veiculo)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Veiculo.Nome) 
+    </dd>
+</dl>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <input type="submit" value="Excluir" class="btn btn-danger" /> |
+    <a asp-action="Index" class="btn btn-secondary">Voltar para a Lista</a>
+</form>

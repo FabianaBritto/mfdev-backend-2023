@@ -1,0 +1,35 @@
+﻿@model IEnumerable<mfdev_backend_2023.Models.Usuario>
+
+@{
+    ViewData["Title"] = "Usuários";
+}
+
+<h1>Usuários</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Adicionar novo usuário</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.First().Nome)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Perfil)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var usuario in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => usuario.Nome)</td>
+                <td>@Html.DisplayFor(modelItem => usuario.Perfil)</td>
+                <td>
+                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@usuario.Id">Editar</a> |
+                    <a class="btn btn-primary" asp-action="Details" asp-route-id="@usuario.Id">Visualizar</a> |
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@usuario.Id">Apagar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
